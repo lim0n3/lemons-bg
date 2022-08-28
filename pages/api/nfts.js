@@ -1,6 +1,7 @@
 import { createAlchemyWeb3 } from '@alch/alchemy-web3';
+import { withSentry } from '@sentry/nextjs';
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
   if (req.method === 'GET') {
     const { address } = req.query;
     const web3 = createAlchemyWeb3(`https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`);
@@ -9,4 +10,6 @@ export default async function handler(req, res) {
     return;
   }
   res.status(400).json({ message: 'Bad Request' });
-}
+};
+
+export default withSentry(handler);

@@ -1,10 +1,11 @@
 import { readFileSync } from 'fs';
 import { join, resolve } from 'path';
 
+import { withSentry } from '@sentry/nextjs';
 import Jimp from 'jimp';
 import nodeHtmlToImage from 'node-html-to-image';
 
-export default async function handler(req, res) {
+const handler = async (req, res) => {
   if (req.method === 'POST') {
     const { imgUrl, width, height } = req.body;
     // Process a POST request
@@ -40,4 +41,6 @@ export default async function handler(req, res) {
     return;
   }
   res.status(400).json({ message: 'Bad Request' });
-}
+};
+
+export default withSentry(handler);
