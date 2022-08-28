@@ -234,9 +234,9 @@ const LemonList = () => {
   const [height, setHeight] = useState();
 
   const handleSelect = (event) => {
-    const [width, height] = event.target.value.split('x');
-    setWidth(width);
-    setHeight(height);
+    const [w, h] = event.target.value.split('x');
+    setWidth(w);
+    setHeight(h);
   };
 
   useEffect(() => {
@@ -259,17 +259,20 @@ const LemonList = () => {
       <div>
         <div>
           <div>
-            <label htmlFor="countries" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">
+            <label htmlFor="phones" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">
               Select your phone size and click on one of your Lemons
             </label>
             <select
-              id="countries"
+              id="phones"
               onChange={handleSelect}
               defaultValue="828x1792"
               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             >
-              {phones.map((phone, index) => (
-                <option key={`phone-${index}`} value={`${phone.width}x${phone.height}`}>
+              {phones.map((phone) => (
+                <option
+                  key={`phone-${phone.name.replace(/g/, '-').toLowerCase()}`}
+                  value={`${phone.width}x${phone.height}`}
+                >
                   {phone.name} ({phone.width} x {phone.height})
                 </option>
               ))}
