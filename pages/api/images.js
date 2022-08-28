@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     // Process a POST request
     const image = await Jimp.read(imgUrl);
     const templateDirectory = resolve(process.cwd(), 'public');
-    const templateFile = readFileSync(join(templateDirectory, 'bg-template.handlebars'), 'utf8');
+    const templateFile = readFileSync(join(templateDirectory, 'assets', 'bg-template.handlebars'), 'utf8');
     const hex = `#${image.getPixelColor(0, 0).toString(16).substring(0, 6)}`;
     const w = parseInt(width, 10) ?? 828;
     const h = parseInt(height, 10) ?? 1792;
