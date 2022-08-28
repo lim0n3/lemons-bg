@@ -222,7 +222,7 @@ const phones = [
 // Make sure that this component is wrapped with ConnectKitProvider
 const LemonList = () => {
   const { address, isConnecting, isDisconnected } = useAccount();
-  const { chain, chains } = useNetwork();
+  const { chain } = useNetwork();
   if (isConnecting) return <div>Connecting...</div>;
   if (isDisconnected)
     return <div className="text-center">Please connect your wallet and select one of your Little Lemon Friends!</div>;
