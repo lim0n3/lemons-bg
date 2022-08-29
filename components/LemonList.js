@@ -113,16 +113,6 @@ const phones = [
     height: 2532,
   },
   {
-    name: 'iPhone 12 Pro',
-    width: 1170,
-    height: 2532,
-  },
-  {
-    name: 'iPhone 12 Pro Max',
-    width: 1284,
-    height: 2778,
-  },
-  {
     name: 'iPhone 13 mini',
     width: 1080,
     height: 2340,
@@ -223,21 +213,10 @@ const phones = [
 const LemonList = () => {
   const { address, isConnecting, isDisconnected } = useAccount();
   const { chain } = useNetwork();
-  if (isConnecting) return <div>Connecting...</div>;
-  if (isDisconnected)
-    return <div className="text-center">Please connect your wallet and select one of your Little Lemon Friends!</div>;
-
   const [nfts, setNfts] = useState([]);
   const [nftsLoaded, setNftsLoaded] = useState();
-
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
-
-  const handleSelect = (event) => {
-    const [w, h] = event.target.value.split('x');
-    setWidth(w);
-    setHeight(h);
-  };
 
   useEffect(() => {
     async function fetchNfts() {
@@ -251,6 +230,17 @@ const LemonList = () => {
     }
     fetchNfts();
   }, []);
+
+  const handleSelect = (event) => {
+    const [w, h] = event.target.value.split('x');
+    setWidth(w);
+    setHeight(h);
+  };
+
+  if (isConnecting) return <div className="text-center">Connecting...</div>;
+  if (isDisconnected)
+    return <div className="text-center">Please connect your wallet and select one of your Little Lemon Friends!</div>;
+
   if (chain.id !== 1) {
     return <div className="text-center">Please switch to Ethereum Mainnet</div>;
   }
@@ -270,7 +260,7 @@ const LemonList = () => {
             >
               {phones.map((phone) => (
                 <option
-                  key={`phone-${phone.name.replace(/g/, '-').toLowerCase()}`}
+                  key={`phone-${phone.name.replace(/ /g, '-').toLowerCase()}`}
                   value={`${phone.width}x${phone.height}`}
                 >
                   {phone.name} ({phone.width} x {phone.height})
