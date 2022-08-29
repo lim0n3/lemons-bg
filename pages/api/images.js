@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import { join, resolve } from 'path';
 
 import { withSentry } from '@sentry/nextjs';
+import chromium from 'chrome-aws-lambda';
 import Jimp from 'jimp';
 import nodeHtmlToImage from 'node-html-to-image';
 
@@ -28,6 +29,12 @@ const handler = async (req, res) => {
         lemonImgUrl: imgUrl,
       },
       puppeteerArgs: {
+        ...(process.env.ENV === 'production'
+          ? {
+              args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'],
+              executablePath: await chromium.executablePath,
+            }
+          : {}),
         defaultViewport: {
           height: h,
           width: w,
