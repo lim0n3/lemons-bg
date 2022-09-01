@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import axios from 'axios';
 import { saveAs } from 'file-saver';
-import { toBlob, toPng } from 'html-to-image';
+import { toBlob } from 'html-to-image';
 import Image from 'next/image';
 
 const Lemon = (props) => {
