@@ -15,12 +15,14 @@ const handler = async (req, res) => {
     const hex = `#${image.getPixelColor(0, 0).toString(16).substring(0, 6)}`;
     const w = parseInt(width, 10) ?? 828;
     const h = parseInt(height, 10) ?? 1792;
-    const overlayHeight = parseInt(w / 6.6, 10);
+    const overlayHeight = parseInt(w / 8, 10);
+    const overlayWidth = parseInt(w / 6, 10);
     const template = Handlebars.compile(templateFile);
     const html = template({
       height: h,
       width: w,
       overlayHeight,
+      overlayWidth,
       bgColor: hex,
       lemonImgUrl: imgUrl,
     });
