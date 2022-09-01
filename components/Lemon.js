@@ -6,7 +6,7 @@ import { toBlob } from 'html-to-image';
 import Image from 'next/image';
 
 const Lemon = (props) => {
-  const { id, imgWidth, imgHeight, imgUrl } = props;
+  const { id, title, imgWidth, imgHeight, imgUrl } = props;
   const [width, height] = [imgWidth, imgHeight];
   const [downloading, setDownloading] = useState();
   const createElementFromHTML = (htmlString) => {
@@ -24,7 +24,7 @@ const Lemon = (props) => {
     document.body.append(elem);
     const node = document.getElementById('handlebars-tmp');
     const data = await toBlob(node);
-    saveAs(data, 'title.png');
+    saveAs(data, `${title}-bg.png`);
     node.remove();
     setDownloading(false);
   };

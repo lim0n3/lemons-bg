@@ -16,7 +16,7 @@ const client = createClient(
 );
 
 const App = () => (
-  <div className="my-5 grid h-full grid-cols-1 grid-rows-2 content-between">
+  <div className="m-5 grid h-full grid-cols-1 grid-rows-2 content-between">
     <WagmiConfig client={client}>
       <ConnectKitProvider>
         <div className="flex justify-center">
