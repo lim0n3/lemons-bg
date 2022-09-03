@@ -214,13 +214,16 @@ const LemonList = () => {
   const { address, isConnecting, isDisconnected } = useAccount();
   const { chain } = useNetwork();
   const [nfts, setNfts] = useState([]);
-  const [nftsLoaded, setNftsLoaded] = useState();
+  const [nftsLoaded, setNftsLoaded] = useState(false);
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
 
   useEffect(() => {
     async function fetchNfts() {
       try {
+        if (!address) {
+          return;
+        }
         const response = await axios.get(`/api/nfts?address=${address}`);
         setNfts(response.data);
         setNftsLoaded(true);
@@ -229,7 +232,7 @@ const LemonList = () => {
       }
     }
     fetchNfts();
-  }, []);
+  }, [address]);
 
   const handleSelect = (event) => {
     const [w, h] = event.target.value.split('x');
@@ -250,7 +253,7 @@ const LemonList = () => {
         <div>
           <div>
             <label htmlFor="phones" className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400">
-              Select your phone size and click on one of your Lemons
+              Select your device (or set custom width and height) and click on one of your Lemons
             </label>
             <select
               id="phones"
