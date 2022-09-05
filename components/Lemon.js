@@ -31,7 +31,7 @@ const Lemon = (props) => {
   return (
     <div className="relative rounded">
       <div
-        className={downloading ? 'z-10 bg-gray-100 bg-opacity-60' : ''}
+        className={downloading ? 'z-10 bg-gray-100/60' : ''}
         style={downloading ? { width: 150, height: 150, position: 'absolute' } : { width: 0, height: 0 }}
       >
         {downloading ? (
