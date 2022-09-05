@@ -38,7 +38,7 @@ const App = () => (
                 </a>{' '}
                 phone background!
               </h1>
-              <Image alt="preview-gif" src="/../public/assets/lemons.gif" height={170} width={340} />
+              <Image alt="preview-gif" src="/assets/lemons.gif" height={170} width={340} />
             </div>
             <div className="row-span-3">
               <div className="mx-auto flex justify-center">
