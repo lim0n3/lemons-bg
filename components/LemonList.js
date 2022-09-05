@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import axios from 'axios';
-import { useAccount, useNetwork } from 'wagmi';
+import { useAccount } from 'wagmi';
 
 import Lemon from './Lemon';
 import LoadingSpinner from './LoadingSpinner';

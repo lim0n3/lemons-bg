@@ -5,7 +5,7 @@ const FollowOnTwitter = () => (
     <a href="https://twitter.com/limone_eth" target="_blank" rel="noreferrer">
       <button
         type="button"
-        className="dark:focus:ring-[#1da1f2]/55 mr-2 mb-2 inline-flex items-center rounded-lg bg-[#1da1f2] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#1da1f2]/90"
+        className="mr-2 mb-2 inline-flex items-center rounded-lg bg-[#1da1f2] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#1da1f2]/90"
       >
         <svg
           className="mr-2 -ml-1 h-4 w-4"
