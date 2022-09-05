@@ -1,18 +1,18 @@
 import React from 'react';
 
 import { BigNumber } from 'ethers';
-import { usePrepareSendTransaction, useSendTransaction } from 'wagmi';
+import { useAccount, usePrepareSendTransaction, useSendTransaction } from 'wagmi';
 
 const SendEtherTip = () => {
+  const { isDisconnected } = useAccount();
   const { config } = usePrepareSendTransaction({
     request: { to: 'limone.eth', value: BigNumber.from('10000000000000000') },
   });
   const { sendTransaction } = useSendTransaction(config);
-
   return (
     <div>
       <button
-        disabled={!sendTransaction}
+        disabled={!sendTransaction || isDisconnected}
         onClick={() => sendTransaction?.()}
         type="button"
         className="mr-2 mb-2 inline-flex items-center rounded-lg bg-gray-100 px-5 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none"
@@ -34,6 +34,7 @@ const SendEtherTip = () => {
         </svg>
         Send 0.01 $ETH tip
       </button>
+      {isDisconnected ? <div className="text-center text-red-600">Connect wallet first!</div> : ''}
     </div>
   );
 };
