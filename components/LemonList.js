@@ -211,8 +211,7 @@ const phones = [
 
 // Make sure that this component is wrapped with ConnectKitProvider
 const LemonList = () => {
-  const { address, isConnecting, isDisconnected } = useAccount();
-  const { chain } = useNetwork();
+  const { address, isDisconnected } = useAccount();
   const [nfts, setNfts] = useState([]);
   const [nftsLoaded, setNftsLoaded] = useState(false);
   const [width, setWidth] = useState();
@@ -239,14 +238,6 @@ const LemonList = () => {
     setWidth(w);
     setHeight(h);
   };
-
-  if (isConnecting) return <div className="text-center">Connecting...</div>;
-  if (isDisconnected)
-    return <div className="text-center">Please connect your wallet and select one of your Little Lemon Friends!</div>;
-
-  if (chain.id !== 1) {
-    return <div className="text-center">Please switch to Ethereum Mainnet</div>;
-  }
   if (nfts?.length > 0 && nftsLoaded) {
     return (
       <div>
@@ -332,6 +323,9 @@ const LemonList = () => {
         and buy your first one!
       </div>
     );
+  }
+  if (isDisconnected) {
+    return '';
   }
   return <LoadingSpinner />;
 };
